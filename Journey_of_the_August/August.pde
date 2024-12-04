@@ -49,6 +49,10 @@ class August {
   void movement() {
     //call controls function to update variables
     controls();
+    
+    //contrains the August the the area of the screen
+    position.x = constrain(position.x, 10, 390);
+    position.y = constrain(position.y, 10, 390);
 
     //creat new acceleration PVector using total thrust of X and Y
     acceleration = new PVector(thrustX, thrustY);
