@@ -20,6 +20,7 @@ class Obsticle {
   Obsticle(float x, float y, float w, float h) {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
+    acceleration = new PVector(0, 0);
     oWidth = w;
     oHeight = h;
   }
@@ -64,9 +65,25 @@ class Obsticle {
       return false;
     }
   }
-  
+
+  //function to display the collider
   void display() {
     fill(200);
     rect(position.x, position.y, oWidth, oHeight);
+  }
+
+  //function to move the collider from the top to the bottom of the screen
+  //parameters for intial velocity and acceleration
+  void movement(float a, float v) {
+    acceleration.y = a;
+    velocity.y = v;
+    velocity.add(acceleration);
+    position.add(velocity);
+
+    if (position.y > 400) {
+      position.y = -20;
+      position.x = random(50, 300);
+      oWidth = random(75, 25);
+    }
   }
 }

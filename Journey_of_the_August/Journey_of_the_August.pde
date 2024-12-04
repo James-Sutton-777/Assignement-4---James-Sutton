@@ -15,14 +15,29 @@ void setup() {
   //begin as state 1, main menu
   state = 1;
   
-  //declaring August
+  //create August
   ship = new August(200, 200);
-}
+  
+  //create obticle
+  wall = new Obsticle(random(50, 300), -20, random(100, 20), 20);
+  }
+  
 //testing August object and movement
 void draw() {
   //redraw background
   background(0);
+  
+  //variable to test collision
+  boolean hit = wall.collision(ship.position.x, ship.position.y, 10);
+  
   ship.movement();
+  wall.movement(0, 0.5);
+  wall.display();
+  
+  //collision function
+  if (hit == true) {
+    println("hit");
+  }
 }
 
 //activate engines in direction of the pressed key
