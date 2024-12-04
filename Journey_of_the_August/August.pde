@@ -49,7 +49,7 @@ class August {
   void movement() {
     //call controls function to update variables
     controls();
-    
+
     //contrains the August the the area of the screen
     position.x = constrain(position.x, 10, 390);
     position.y = constrain(position.y, 10, 390);
@@ -121,5 +121,14 @@ class August {
     //ship
     fill(100);
     triangle(0, -5, 3, 2, -3, 2);
+  }
+
+  boolean isHit(Bullet contact) {
+    float distance = dist(position.x, position.y, contact.position.x, contact.position.y);
+    if (distance < 5) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -4,6 +4,7 @@
 August ship;
 Enemy enemy;
 ArrayList<Obsticle> wallz = new ArrayList<Obsticle>();
+ArrayList<Bullet> shellsFired = new ArrayList<Bullet>();
 //variable for storing game state
 int state;
 boolean gameStart = false;
@@ -123,11 +124,12 @@ void gamePlay() {
   background(0);
 
   scoring();
-  
+
   enemy.movement();
   enemy.display();
   enemy.fcs(ship.position.x, ship.position.y);
-  
+  enemy.timer();
+
 
   ship.movement();
 
@@ -140,6 +142,26 @@ void gamePlay() {
     }
   }
 
+  for (int i = 0; i < shellsFired.size(); i++) {
+    Bullet shelli = shellsFired.get(i);
+    shelli.display();
+    shelli.movement();
+    shelli.lifespan();
+    if (ship.isHit(shelli)== true) {
+      hit = true;
+      shellsFired.remove(i);
+    }
+    if (shelli.timer == 800) {
+      shellsFired.remove(0);
+    }
+  }
+
+  if (enemy.fire == true) {
+    Bullet shell = new Bullet(enemy.position.copy(), enemy.aim.copy());
+    shellsFired.add(shell);
+    println("PEW");
+  }
+
   //collision function
   if (hit == true) {
     println("hit");
@@ -150,10 +172,12 @@ void gamePlay() {
   }
 }
 
+
+
 void scoring() {
   score += 1;
   textSize(10);
-  text(("Score:"+score), 330, 380); 
+  text(("Score:"+score), 330, 380);
 
   if (score == 700) {
     wallz.add(new Obsticle(random(-25, 375), -20, random(50, 15), 10));
@@ -182,8 +206,8 @@ void startScreen() {
 void gameOver() {
   background(200, 0, 10);
   textSize(30);
-  text(("Final Score:  "+finalScore), 100, 200); 
-  
+  text(("Final Score:  "+finalScore), 100, 200);
+
   hit = false;
 
   ship.velocity.y = 0;
@@ -215,6 +239,9 @@ void gameOver() {
     }
   }
 
+  for (int i = shellsFired.size() + 1; i > 0; i--) {
+    shellsFired.remove(i);
+  }
 
   if (gameEnd == true) {
     state = 1;

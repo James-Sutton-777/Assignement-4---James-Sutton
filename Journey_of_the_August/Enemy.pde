@@ -41,4 +41,14 @@ class Enemy {
     fill(180, 0, 50);
     triangle(position.x, position.y - 5, position.x + 3, position.y + 2, position.x - 3, position.y + 2);
   }
+
+  void timer() {
+    if (spawnTime >= 100) {
+      spawnTime = 0;
+      fire = true;
+    } else {
+      spawnTime += 1;
+      fire = false;
+    }
+  }
 }
