@@ -2,6 +2,7 @@
 
 //initialization and variables
 August ship;
+Enemy enemy;
 ArrayList<Obsticle> wallz = new ArrayList<Obsticle>();
 //variable for storing game state
 int state;
@@ -24,6 +25,7 @@ void setup() {
 
   //create August
   ship = new August(200, 200);
+  enemy = new Enemy();
 
   //create initial colliders
   for (int i = 0; i < 2; i++) {
@@ -121,6 +123,11 @@ void gamePlay() {
   background(0);
 
   scoring();
+  
+  enemy.movement();
+  enemy.display();
+  enemy.fcs(ship.position.x, ship.position.y);
+  
 
   ship.movement();
 
@@ -145,7 +152,6 @@ void gamePlay() {
 
 void scoring() {
   score += 1;
-  println(score);
   textSize(10);
   text(("Score:"+score), 330, 380); 
 
