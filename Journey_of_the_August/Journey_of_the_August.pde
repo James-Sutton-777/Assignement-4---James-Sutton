@@ -239,8 +239,11 @@ void gameOver() {
     }
   }
 
-  for (int i = shellsFired.size() + 1; i > 0; i--) {
-    shellsFired.remove(i);
+  for (int i = shellsFired.size() - 1; i >= 0; i--) {
+    Bullet dead = shellsFired.get(i);
+    if (dead.timer >= 0) {
+      shellsFired.remove(i);
+    }
   }
 
   if (gameEnd == true) {

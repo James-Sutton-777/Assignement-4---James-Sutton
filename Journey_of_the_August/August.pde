@@ -125,7 +125,7 @@ class August {
 
   boolean isHit(Bullet contact) {
     float distance = dist(position.x, position.y, contact.position.x, contact.position.y);
-    if (distance < 5) {
+    if (distance < 10) {
       return true;
     } else {
       return false;
