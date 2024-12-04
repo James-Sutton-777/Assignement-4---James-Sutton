@@ -19,6 +19,8 @@ void setup() {
 }
 //testing August object and movement
 void draw() {
+  //redraw background
+  background(0);
   ship.movement();
   ship.display();
 }
@@ -33,11 +35,11 @@ void keyPressed() {
     ship.bow = true;
   }
 
-  if (keyCode == LEFT) {
+  if (keyCode == RIGHT) {
     ship.port = true;
   }
 
-  if (keyCode == RIGHT) {
+  if (keyCode == LEFT) {
     ship.starboard = true;
   }
 }
@@ -52,11 +54,11 @@ void keyReleased() {
     ship.bow = false;
   }
 
-  if (keyCode == LEFT) {
+  if (keyCode == RIGHT) {
     ship.port = false;
   }
 
-  if (keyCode == RIGHT) {
+  if (keyCode == LEFT) {
     ship.starboard = false;
   }
 }

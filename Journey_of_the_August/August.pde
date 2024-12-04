@@ -23,13 +23,16 @@ class August {
   float engine4;
 
   //thrust power
-  float power1 = 0.5;
-  float power2 = 0.4;
-  float power3 = 0.3;
+  float power1 = 0.08;
+  float power2 = 0.06;
+  float power3 = 0.04;
 
   //total thrust on ship X and Y axis
   float thrustY;
   float thrustX;
+  
+  //dragstrentgh for use in lerp function
+  float drag = 0.02;
 
   //August Constructor with initial position parameters
   August( float x, float y) {
@@ -41,8 +44,14 @@ class August {
     //call controls function to update variables
     controls();
     {
+      //creat new acceleration PVector using total thrust of X and Y
       acceleration = new PVector(thrustX, thrustY);
+      //add acceleration to the velocity creating the speed of the August
       velocity.add(acceleration);
+      //Lerp function to simulate drag, reduces velocity to zero at the rate of drag
+      velocity.x = lerp(velocity.x, 0, drag);
+      velocity.y = lerp(velocity.y, 0, drag);
+      //add final velocity to position to update the position of the August
       position.add(velocity);
     }
   }
@@ -80,8 +89,11 @@ class August {
   }
 
   void display() {
-    //place holder ship
+    //hitbox indicator for testing
     fill(255);
     ellipse(position.x, position.y, 10, 10);
+    //ship
+    fill(100);
+    triangle(position.x, position.y - 5, position.x + 3, position.y +2, position.x - 3, position.y + 2);
   }
 }
