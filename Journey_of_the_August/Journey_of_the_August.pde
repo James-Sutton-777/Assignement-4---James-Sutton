@@ -11,6 +11,7 @@ boolean gameEnd = false;
 //gameplay variables
 boolean hit = false;
 int score = 0;
+int finalScore = 0;
 
 //setup initial variables and window
 void setup() {
@@ -137,6 +138,7 @@ void gamePlay() {
     println("hit");
     gameStart = false;
     gameEnd = false;
+    finalScore = score;
     state = 3;
   }
 }
@@ -144,16 +146,18 @@ void gamePlay() {
 void scoring() {
   score += 1;
   println(score);
+  textSize(10);
+  text(("Score:"+score), 330, 380); 
 
-  if (score == 500) {
+  if (score == 700) {
     wallz.add(new Obsticle(random(-25, 375), -20, random(50, 15), 10));
-  } else if (score == 1000) {
+  } else if (score == 1400) {
     wallz.add(new Obsticle(random(-25, 375), -20, random(50, 15), 10));
-  } else if (score == 7500) {
+  } else if (score == 2100) {
     wallz.add(new Obsticle(random(-25, 375), -20, random(50, 15), 10));
-  } else if (score == 10000) {
+  } else if (score == 2800) {
     wallz.add(new Obsticle(random(-25, 375), -20, random(50, 15), 10));
-  } else if (score == 11000) {
+  } else if (score == 3500) {
     wallz.add(new Obsticle(random(-25, 375), -20, random(50, 15), 10));
   }
 }
@@ -171,7 +175,9 @@ void startScreen() {
 
 void gameOver() {
   background(200, 0, 10);
-
+  textSize(30);
+  text(("Final Score:  "+finalScore), 100, 200); 
+  
   hit = false;
 
   ship.velocity.y = 0;

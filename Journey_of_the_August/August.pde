@@ -113,7 +113,7 @@ class August {
   void display() {
     //hitbox indicator for testing
     fill(255);
-    ellipse(0, 0, 10, 10);
+    ellipse(0, 0, 13, 13);
     //ship
     fill(100);
     triangle(0, -5, 3, 2, -3, 2);

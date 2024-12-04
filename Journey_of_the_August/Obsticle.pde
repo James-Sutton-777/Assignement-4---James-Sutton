@@ -65,7 +65,7 @@ class Obsticle {
     float distT = sqrt((distX * distX) + (distY * distY));
 
     //if statement which returns true on obsticle collision with ship
-    if (distT <= r) {
+    if (distT < r) {
       return true;
     } else {
       return false;
