@@ -23,9 +23,9 @@ class August {
   float engine4;
 
   //thrust power
-  float power1;
-  float power2;
-  float power3;
+  float power1 = 0.5;
+  float power2 = 0.4;
+  float power3 = 0.3;
 
   //total thrust on ship X and Y axis
   float thrustY;
@@ -57,18 +57,18 @@ class August {
     }
 
     if (stern == true) {
-      engine2 = power2;
+      engine2 = -power2;
     } else {
       engine2 = 0;
     }
 
     if (port == true) {
-      engine3 = power3;
+      engine3 = -power3;
     } else {
       engine3 = 0;
     }
 
-    if (stern == true) {
+    if (starboard == true) {
       engine4 = power3;
     } else {
       engine4 = 0;
