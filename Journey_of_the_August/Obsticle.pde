@@ -86,7 +86,7 @@ class Obsticle {
 
     if (position.y > 400) {
       position.y = random(-20, -50);
-      position.x = random(50, 300);
+      position.x = random(-5, 395);
       oWidth = random(50, 15);
     }
   }
