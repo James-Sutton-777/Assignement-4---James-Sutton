@@ -4,7 +4,6 @@ class Obsticle {
   //initializing vector for obsticle position, velocity, and acceleration
   PVector position;
   PVector velocity;
-  PVector acceleration;
 
   //declare variables for obsticle width and height
   float oWidth;
@@ -15,12 +14,17 @@ class Obsticle {
   float rightSide;
   float topSide;
   float bottomSide;
+  
+  //variables controlling speed and position changes of obsticle
+  float accel = 0;
+  
+  //timer variables
+  int levelTime = 0;
 
   //contructor for the obsticle with parameters to set position, width and height
   Obsticle(float x, float y, float w, float h) {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
-    acceleration = new PVector(0, 0);
     oWidth = w;
     oHeight = h;
   }
@@ -74,16 +78,23 @@ class Obsticle {
 
   //function to move the collider from the top to the bottom of the screen
   //parameters for intial velocity and acceleration
-  void movement(float a, float v) {
-    acceleration.y = a;
-    velocity.y = v;
-    velocity.add(acceleration);
+  void movement(float v) {
+    velocity.y = v + accel;
     position.add(velocity);
 
     if (position.y > 400) {
       position.y = -20;
       position.x = random(50, 300);
-      oWidth = random(75, 25);
+      oWidth = random(75, 15);
+    }
+  }
+  //function counting time of play and adjusting variables as a result
+  void timer() {
+    levelTime += 1;
+    
+    if (levelTime == 1000) {
+      levelTime = 0;
+      accel += 0.5;
     }
   }
 }

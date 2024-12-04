@@ -19,7 +19,7 @@ void setup() {
   ship = new August(200, 200);
   
   //create obticle
-  wall = new Obsticle(random(50, 300), -20, random(100, 20), 20);
+  wall = new Obsticle(random(50, 300), -20, random(100, 15), 20);
   }
   
 //testing August object and movement
@@ -31,8 +31,9 @@ void draw() {
   boolean hit = wall.collision(ship.position.x, ship.position.y, 10);
   
   ship.movement();
-  wall.movement(0, 0.5);
+  wall.movement(random(0.5, 1));
   wall.display();
+  wall.timer();
   
   //collision function
   if (hit == true) {
