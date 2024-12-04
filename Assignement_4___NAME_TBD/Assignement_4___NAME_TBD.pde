@@ -1,11 +1,11 @@
-//Game where small ship avoids being hit for as long as possible
+//game where small ship avoids being hit for as long as possible
 
-//Initialization and variables
+//initialization and variables
 
-//Variable for storing game state
+//variable for storing game state
 int state;
 
-//Setup initial variables and window
+//setup initial variables and window
 void setup() {
   //window size
   size(400, 400);
