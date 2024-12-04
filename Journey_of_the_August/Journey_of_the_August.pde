@@ -2,9 +2,12 @@
 
 //initialization and variables
 August ship;
-Obsticle wall;
+ArrayList<Obsticle> wallz = new ArrayList<Obsticle>();
 //variable for storing game state
 int state;
+
+//gameplay variables
+boolean hit = false;
 
 //setup initial variables and window
 void setup() {
@@ -18,26 +21,18 @@ void setup() {
   //create August
   ship = new August(200, 200);
   
-  //create obticle
-  wall = new Obsticle(random(50, 300), -20, random(100, 15), 20);
+  //create initial colliders
+   for (int i = 0; i < 2; i++) {
+    wallz.add(new Obsticle(random(-25, 375), random(-5, -20), random(50, 10), 10));
+   }
   }
   
 //testing August object and movement
 void draw() {
-  //redraw background
-  background(0);
   
-  //variable to test collision
-  boolean hit = wall.collision(ship.position.x, ship.position.y, 10);
-  
-  ship.movement();
-  wall.movement(random(0.5, 1));
-  wall.display();
-  wall.timer();
-  
-  //collision function
-  if (hit == true) {
-    println("hit");
+  //gameplay state
+  if (state == 1) {
+    gamePlay();
   }
 }
 
@@ -94,5 +89,26 @@ void keyReleased() {
   
   if (key == 'd') {
     ship.rRight = false;
+  }
+}
+
+void gamePlay() {
+  //redraw background
+  background(0);
+  
+  ship.movement();
+  
+  for (int i = 0; i < wallz.size(); i++) {
+    Obsticle walli = wallz.get(i);
+    walli.display();
+    walli.movement(random(0.5, 1));
+    if (walli.collision(ship.position.x, ship.position.y, 10)) {
+      hit = true;
+    }
+  }
+  
+  //collision function
+  if (hit == true) {
+    println("hit");
   }
 }

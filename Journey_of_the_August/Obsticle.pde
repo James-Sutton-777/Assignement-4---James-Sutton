@@ -83,7 +83,7 @@ class Obsticle {
     position.add(velocity);
 
     if (position.y > 400) {
-      position.y = -20;
+      position.y = random(-20, -50);
       position.x = random(50, 300);
       oWidth = random(75, 15);
     }
