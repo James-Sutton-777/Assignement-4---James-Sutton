@@ -23,7 +23,7 @@ void setup() {
   
   //create initial colliders
    for (int i = 0; i < 2; i++) {
-    wallz.add(new Obsticle(random(-25, 375), random(-5, -20), random(50, 10), 10));
+    wallz.add(new Obsticle(random(-25, 375), random(-20 - (20*i)), random(50, 15), 10));
    }
   }
   
@@ -101,7 +101,7 @@ void gamePlay() {
   for (int i = 0; i < wallz.size(); i++) {
     Obsticle walli = wallz.get(i);
     walli.display();
-    walli.movement(random(0.5, 1));
+    walli.movement(0.5);
     if (walli.collision(ship.position.x, ship.position.y, 10)) {
       hit = true;
     }

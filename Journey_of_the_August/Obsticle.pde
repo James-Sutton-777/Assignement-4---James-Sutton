@@ -85,7 +85,7 @@ class Obsticle {
     if (position.y > 400) {
       position.y = random(-20, -50);
       position.x = random(50, 300);
-      oWidth = random(75, 15);
+      oWidth = random(50, 15);
     }
   }
   //function counting time of play and adjusting variables as a result
@@ -94,7 +94,7 @@ class Obsticle {
     
     if (levelTime == 1000) {
       levelTime = 0;
-      accel += 0.5;
+      accel += random(0.5, 1);
     }
   }
 }
