@@ -2,6 +2,7 @@
 
 //initialization and variables
 August ship;
+Obsticle wall;
 //variable for storing game state
 int state;
 
