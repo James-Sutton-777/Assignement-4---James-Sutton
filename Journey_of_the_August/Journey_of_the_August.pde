@@ -22,7 +22,6 @@ void draw() {
   //redraw background
   background(0);
   ship.movement();
-  ship.display();
 }
 
 //activate engines in direction of the pressed key
@@ -42,6 +41,15 @@ void keyPressed() {
   if (keyCode == LEFT) {
     ship.starboard = true;
   }
+  
+  //Rotation key inputs
+    if (key == 'a') {
+    ship.rLeft = true;
+  }
+  
+  if (key == 'd') {
+    ship.rRight = true;
+  }
 }
 
 //activate engines in direction of the pressed key
@@ -60,5 +68,14 @@ void keyReleased() {
 
   if (keyCode == LEFT) {
     ship.starboard = false;
+  }
+  
+  //Rotation key inputs
+    if (key == 'a') {
+    ship.rLeft = false;
+  }
+  
+  if (key == 'd') {
+    ship.rRight = false;
   }
 }

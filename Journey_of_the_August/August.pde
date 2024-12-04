@@ -8,13 +8,13 @@ class August {
   PVector velocity;
   PVector acceleration;
 
-  //booleans for the August's thruster controls
+  //booleans for the August's controls
   boolean bow;
   boolean stern;
   boolean port;
   boolean starboard;
 
-  //Variables for thrusters controls
+  //Variables for thrusters
 
   //ship engines
   float engine1;
@@ -30,9 +30,15 @@ class August {
   //total thrust on ship X and Y axis
   float thrustY;
   float thrustX;
-  
+
   //dragstrentgh for use in lerp function
   float drag = 0.02;
+
+  //variables for control of August's rotation
+  boolean rLeft;
+  boolean rRight;
+  float rotation;
+  float rotationAmount = 0.08;
 
   //August Constructor with initial position parameters
   August( float x, float y) {
@@ -43,17 +49,25 @@ class August {
   void movement() {
     //call controls function to update variables
     controls();
-    {
-      //creat new acceleration PVector using total thrust of X and Y
-      acceleration = new PVector(thrustX, thrustY);
-      //add acceleration to the velocity creating the speed of the August
-      velocity.add(acceleration);
-      //Lerp function to simulate drag, reduces velocity to zero at the rate of drag
-      velocity.x = lerp(velocity.x, 0, drag);
-      velocity.y = lerp(velocity.y, 0, drag);
-      //add final velocity to position to update the position of the August
-      position.add(velocity);
-    }
+
+    //creat new acceleration PVector using total thrust of X and Y
+    acceleration = new PVector(thrustX, thrustY);
+    //apply rotation to the August's acceleration by rotation
+    acceleration.rotate(rotation);
+    //add acceleration to the velocity creating the speed of the August
+    velocity.add(acceleration);
+    //Lerp function to simulate drag, reduces velocity to zero at the rate of drag
+    velocity.x = lerp(velocity.x, 0, drag);
+    velocity.y = lerp(velocity.y, 0, drag);
+    //add final velocity to position to update the position of the August
+    position.add(velocity);
+
+    //use matrix to rotate and move the August visual model
+    pushMatrix();
+    translate(position.x, position.y);
+    rotate(rotation);
+    display();
+    popMatrix();
   }
 
   //Ship propulsion controls
@@ -86,14 +100,22 @@ class August {
     //Calculating total thrust of spaceship
     thrustY = engine1 + engine2;
     thrustX = engine3 + engine4;
+
+    //adjust rotation depending on control input
+    if (rLeft == true) {
+      rotation -= rotationAmount;
+    }
+    if (rRight == true) {
+      rotation += rotationAmount;
+    }
   }
 
   void display() {
     //hitbox indicator for testing
     fill(255);
-    ellipse(position.x, position.y, 10, 10);
+    ellipse(0, 0, 10, 10);
     //ship
     fill(100);
-    triangle(position.x, position.y - 5, position.x + 3, position.y +2, position.x - 3, position.y + 2);
+    triangle(0, -5, 3, 2, -3, 2);
   }
 }
