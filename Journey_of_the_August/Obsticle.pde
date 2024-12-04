@@ -17,6 +17,7 @@ class Obsticle {
   
   //variables controlling speed and position changes of obsticle
   float accel = 0;
+  float speed;
   
   //timer variables
   int levelTime = 0;
@@ -27,6 +28,7 @@ class Obsticle {
     velocity = new PVector(0, 0);
     oWidth = w;
     oHeight = h;
+    speed = random(0.5, 1);
   }
 
   //boolean to determine collision of obsticle and the August
@@ -78,8 +80,8 @@ class Obsticle {
 
   //function to move the collider from the top to the bottom of the screen
   //parameters for intial velocity and acceleration
-  void movement(float v) {
-    velocity.y = v + accel;
+  void movement() {
+    velocity.y = speed + accel;
     position.add(velocity);
 
     if (position.y > 400) {
@@ -94,7 +96,7 @@ class Obsticle {
     
     if (levelTime == 1000) {
       levelTime = 0;
-      accel += random(0.5, 1);
+      accel = accel + random(1, 1.5);
     }
   }
 }
