@@ -1,7 +1,11 @@
 //game where small ship avoids being hit for as long as possible//
 
-//initialize image for background function backgroundStars
+//initialize images 
+//background for function backgroundStars
 PImage stars;
+//idle state background
+PImage start;
+
 
 //initialization and variables
 
@@ -35,8 +39,9 @@ void setup() {
   size(400, 400);
   background(0);
 
-  //load png file used in backgroundStars
+  //load png files
   stars = loadImage("star_background.png");
+  start = loadImage("start_screen.png");
 
   //begin as state 1, idle
   state = 1;
@@ -240,9 +245,11 @@ void scoring() {
 //function for game start state
 void startScreen() {
   background(0);
+  
+  //background image
+  imageMode(CENTER);
+  image(start, width/2, height/2, width, height);
 
-  fill(255);
-  ellipse(200, 200, 10, 10);
   
   //if statement changes to gameplay when corresponding key is pressed
   if (gameStart == true) {
