@@ -1,5 +1,7 @@
 class Enemy {
 
+  PImage spiker;
+  
   PVector position;
   PVector velocity;
   PVector aim;
@@ -9,10 +11,11 @@ class Enemy {
   boolean fire = false;
 
   Enemy() {
-    position = new PVector(random(10, 390), 10);
+    position = new PVector(random(10, 390), 25);
     velocity = new PVector(0.5, 0);
     aim = new PVector(0, 0);
     spawnTime = 0;
+    spiker = loadImage("spiker_bomber.png");
   }
 
   void fcs(float x, float y) {
@@ -40,6 +43,8 @@ class Enemy {
     line(position.x, position.y, position.x + (aim.x * 25), position.y + (aim.y * 25));
     fill(180, 0, 50);
     triangle(position.x, position.y - 5, position.x + 3, position.y + 2, position.x - 3, position.y + 2);
+    imageMode(CENTER);
+    image(spiker, position.x, position.y, 65, 65);
   }
 
   void timer() {

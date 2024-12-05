@@ -3,6 +3,8 @@ class August {
 
   //initializing objects and declaring variables
 
+  PImage ship;
+
   //vector for the August's position, speed, and acceleration
   PVector position;
   PVector velocity;
@@ -44,6 +46,8 @@ class August {
   August( float x, float y) {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
+    imageMode(CENTER);
+    ship = loadImage("august_ship.png");
   }
 
   void movement() {
@@ -121,6 +125,7 @@ class August {
     //ship
     fill(100);
     triangle(0, -5, 3, 2, -3, 2);
+    image(ship, 0, 0, 50, 50);
   }
 
   boolean isHit(Bullet contact) {

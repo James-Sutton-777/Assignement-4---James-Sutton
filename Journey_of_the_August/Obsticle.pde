@@ -1,5 +1,7 @@
 //creation of object class for colliding obsticle
 class Obsticle {
+  
+  PImage spikes;
 
   //initializing vector for obsticle position, velocity, and acceleration
   PVector position;
@@ -29,6 +31,7 @@ class Obsticle {
     oWidth = w;
     oHeight = h;
     speed = random(0.5, 1);
+    spikes = loadImage("spikerbarrier.png");
   }
 
   //boolean to determine collision of obsticle and the August
@@ -76,6 +79,8 @@ class Obsticle {
   void display() {
     fill(200);
     rect(position.x, position.y, oWidth, oHeight);
+    imageMode(CENTER);
+    image(spikes, position.x + oWidth/2, position.y + 5, oWidth + 20, 80);
   }
 
   //function to move the collider from the top to the bottom of the screen
