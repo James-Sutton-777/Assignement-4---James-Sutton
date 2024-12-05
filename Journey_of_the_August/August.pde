@@ -84,25 +84,25 @@ class August {
   void controls() {
 
     if (bow == true) {
-      engine1 = power1;
+      engine1 = -power1;
     } else {
       engine1 = 0;
     }
 
     if (stern == true) {
-      engine2 = -power2;
+      engine2 = power2;
     } else {
       engine2 = 0;
     }
 
     if (port == true) {
-      engine3 = -power3;
+      engine3 = power3;
     } else {
       engine3 = 0;
     }
 
     if (starboard == true) {
-      engine4 = power3;
+      engine4 = -power3;
     } else {
       engine4 = 0;
     }
