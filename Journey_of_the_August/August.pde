@@ -1,8 +1,9 @@
 //creation of object class for player sprite known as August
+//contains constructor, movement function, controls function, display function, and boolean to detect bomb collisions
 class August {
 
   //initializing objects and declaring variables
-
+  //sprite for the August
   PImage ship;
 
   //vector for the August's position, speed, and acceleration
@@ -42,7 +43,7 @@ class August {
   float rotation;
   float rotationAmount = 0.08;
 
-  //August Constructor with initial position parameters
+  //August Constructor with initial position parameters, load sprite image
   August( float x, float y) {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
@@ -50,6 +51,7 @@ class August {
     ship = loadImage("august_ship.png");
   }
 
+  //function controls movement of the player ship
   void movement() {
     //call controls function to update variables
     controls();
@@ -70,7 +72,7 @@ class August {
     //add final velocity to position to update the position of the August
     position.add(velocity);
 
-    //use matrix to rotate and move the August visual model
+    //use matrix to rotate and move the August visual model by calling display function within it
     pushMatrix();
     translate(position.x, position.y);
     rotate(rotation);
@@ -105,7 +107,7 @@ class August {
       engine4 = 0;
     }
 
-    //Calculating total thrust of spaceship
+    //Calculating total X and Y thrust of spaceship
     thrustY = engine1 + engine2;
     thrustX = engine3 + engine4;
 
@@ -118,19 +120,21 @@ class August {
     }
   }
 
+  //display function
   void display() {
     //hitbox indicator for testing
-    fill(255);
-    ellipse(0, 0, 13, 13);
-    //ship
-    fill(100);
-    triangle(0, -5, 3, 2, -3, 2);
+    //fill(255);
+    //ellipse(0, 0, 13, 13);
+    //space ship sprite
     image(ship, 0, 0, 50, 50);
   }
 
+  //boolean function returns true whe is distance between bomb and player origin is less than hitbox of 13
   boolean isHit(Bullet contact) {
+    //intake of player position and bomb position to calculate distance
     float distance = dist(position.x, position.y, contact.position.x, contact.position.y);
-    if (distance < 10) {
+    //if statement containing hitbox radius to determine if return is true
+    if (distance < 13) {
       return true;
     } else {
       return false;

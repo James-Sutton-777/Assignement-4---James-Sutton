@@ -1,4 +1,5 @@
-//creation of object class for colliding obsticle
+//creation of object class for colliding barriers
+//contains constructor, boolean function calculating collisions, display function, movement function, and timer function
 class Obsticle {
   
   PImage spikes;
@@ -24,7 +25,7 @@ class Obsticle {
   //timer variables
   int levelTime = 0;
 
-  //contructor for the obsticle with parameters to set position, width and height
+  //contructor for the barrier with parameters to set position, width and height
   Obsticle(float x, float y, float w, float h) {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
@@ -34,7 +35,7 @@ class Obsticle {
     spikes = loadImage("spikerbarrier.png");
   }
 
-  //boolean to determine collision of obsticle and the August
+  //boolean to determine collision of Obsticle and the August
   //inputing ships position and radius of hitbox as parameters
   boolean collision(float x, float y, float r) {
 
@@ -42,19 +43,19 @@ class Obsticle {
     float checkX = x;
     float checkY = y;
 
-    //create values for each edge of the obsticle
+    //create values for each edge of the barrier
     leftSide = position.x;
     rightSide = position.x + oWidth;
     topSide = position.y;
     bottomSide = position.y + oHeight;
 
-    //determine if hitbox is left or right of the obsticle
+    //determine if hitbox is left or right of the barrier
     if (x < leftSide) {
       checkX = leftSide;
     } else if (x > rightSide) {
       checkX = rightSide;
     }
-    //determine if hitbox is above or bellow the obsticle
+    //determine if hitbox is above or bellow the barrier
     if (y < topSide) {
       checkY = topSide;
     } else if (y > bottomSide) {
@@ -67,7 +68,7 @@ class Obsticle {
     //declare and calculate total distance between edge and ship
     float distT = sqrt((distX * distX) + (distY * distY));
 
-    //if statement which returns true on obsticle collision with ship
+    //if statement which returns true on barrier collision with ship
     if (distT < r) {
       return true;
     } else {
@@ -77,8 +78,8 @@ class Obsticle {
 
   //function to display the collider
   void display() {
-    fill(200);
-    rect(position.x, position.y, oWidth, oHeight);
+    //fill(200);
+    //rect(position.x, position.y, oWidth, oHeight);
     imageMode(CENTER);
     image(spikes, position.x + oWidth/2, position.y + 5, oWidth + 20, 80);
   }
@@ -99,6 +100,7 @@ class Obsticle {
   void timer() {
     levelTime += 1;
     
+    //increase barrier acceleration by random int every time the timer reaches chosen number
     if (levelTime == 1000) {
       levelTime = 0;
       accel = accel + random(1, 1.5);
