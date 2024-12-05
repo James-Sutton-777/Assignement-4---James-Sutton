@@ -1,5 +1,7 @@
 //game where small ship avoids being hit for as long as possible
 
+PImage stars;
+
 //initialization and variables
 August ship;
 Enemy enemy;
@@ -20,6 +22,8 @@ void setup() {
   //window size and background
   size(400, 400);
   background(0);
+  
+  stars = loadImage("star_background.png");
 
   //begin as state 1, main menu
   state = 1;
@@ -122,6 +126,7 @@ void keyReleased() {
 void gamePlay() {
   //redraw background
   background(0);
+  backgroundStars();
 
   scoring();
 
@@ -249,4 +254,9 @@ void gameOver() {
   if (gameEnd == true) {
     state = 1;
   }
+}
+
+void backgroundStars() {
+  imageMode(CENTER);
+  image(stars, width/2, height/2, width, height);
 }

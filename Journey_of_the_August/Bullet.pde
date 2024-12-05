@@ -10,9 +10,10 @@ class Bullet{
    velocity.mult(0.5);
  }
 void display(){
-  noStroke();
+  stroke(0, 0, 245);
   fill(255);
   ellipse(position.x, position.y, 5, 5);
+  noStroke();
 }
 
 void movement(){
