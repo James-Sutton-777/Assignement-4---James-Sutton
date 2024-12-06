@@ -1,4 +1,5 @@
 //game where small ship avoids being hit for as long as possible//
+//press space to start and to return to start screen on game over//
 
 //initialize images 
 //background for function backgroundStars
